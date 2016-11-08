@@ -210,9 +210,9 @@ extension TableViewController/*: UIScrollViewDelegate*/ {
 class TableViewController: UIViewController {
 
     override func loadView() {
-        let view = UIView(); view.backgroundColor = .whiteColor(); view.opaque = true; self.view = view
+        let view = UIView(); view.backgroundColor = .white; view.isOpaque = true; self.view = view
 
-        let tableView = UITableView(frame: .zero, style: .Plain)
+        let tableView = UITableView(frame: .zero, style: .plain)
         view.addSubview(tableView)
         self.tableView = tableView
     }
@@ -221,7 +221,7 @@ class TableViewController: UIViewController {
         didSet {
             tableView.dataSource = self
             tableView.delegate = self
-            tableView.registerClass(TableViewCell.self, forCellReuseIdentifier: cellId)
+            tableView.register(TableViewCell.self, forCellReuseIdentifier: cellId)
             tableView.rowHeight = UITableViewAutomaticDimension
             tableView.estimatedRowHeight = 100
             tableView.snp_makeConstraints { make in
@@ -232,12 +232,12 @@ class TableViewController: UIViewController {
 }
 
 extension TableViewController: UITableViewDataSource {
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 100
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellId, forIndexPath: indexPath) as! TableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! TableViewCell
         cell.thumbnailImageView.image = UIImage(named: "profile")
         cell.titleLabel.text = "Lorem Ipsum"
         cell.subtitleLabel.text = "Dolor sit amet etc etc Dolor sit amet etc etc Dolor sit amet etc etc Dolor sit amet etc etc Dolor sit amet etc etc"
